@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Ankit.Richharia on 5/12/2016.
  */
 
-public class AppDetails implements Serializable {
+public class AppRequest implements Serializable {
 
 
     public String appType;
@@ -14,10 +14,10 @@ public class AppDetails implements Serializable {
     public String userName;
     public String password;
 
-    public AppDetails() {
+    public AppRequest() {
     }
 
-    public AppDetails(String appType, String dbUrl, String userName, String password) {
+    public AppRequest(String appType, String dbUrl, String userName, String password) {
         this.appType = appType;
         this.dbUrl = dbUrl;
         this.userName = userName;
