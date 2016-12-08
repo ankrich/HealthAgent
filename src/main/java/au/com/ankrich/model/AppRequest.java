@@ -1,4 +1,4 @@
-package au.com.securepay.ps.model;
+package au.com.ankrich.model;
 
 import java.io.Serializable;
 

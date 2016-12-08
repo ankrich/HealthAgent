@@ -1,4 +1,4 @@
-package au.com.securepay.ps.model;
+package au.com.ankrich.model;
 
 /**
  * Created by Ankit.Richharia on 6/12/2016.

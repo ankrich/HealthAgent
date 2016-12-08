@@ -1,7 +1,7 @@
-package au.com.securepay.ps.controller;
+package au.com.ankrich.controller;
 
-import au.com.securepay.ps.model.AppRequest;
-import au.com.securepay.ps.model.AppResponse;
+import au.com.ankrich.model.AppRequest;
+import au.com.ankrich.model.AppResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +27,13 @@ public class Controller {
     @Autowired
     ObjectMapper objectMapper;
 
+    public enum status{
+        UP, DOWN
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public String health(@RequestBody AppRequest appRequest) {
         try {
-        /*Class.forName(appRequest.getDbDriver());
-        String serverName = appRequest.getServerName();
-        String portNumber = appRequest.getPortNumber();
-        String sid = appRequest.getSid();
-        String url = "jdbc:mysql://" + serverName + ":" + portNumber + "/" + sid;*/
         Map<String , String > response = new HashMap<>();
         String driver = null;
         driver =  (appRequest.getAppType().equals("NT")) ?  "com.mysql.jdbc.Driver" :  "net.sourceforge.jtds.jdbc.Driver";
@@ -47,10 +46,10 @@ public class Controller {
             appResponse.setAppType(appRequest.getAppType());
             appResponse.setDbUrl(appRequest.getDbUrl());
             if (conn!=null) {
-                appResponse.setStatus("UP");
+                appResponse.setStatus(String.valueOf(status.UP));
                 return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(appResponse) ;
             }else
-                appResponse.setStatus("DOWN");
+                appResponse.setStatus(String.valueOf(status.DOWN));
                 return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(appResponse);
 
         } catch (SQLException e) {
